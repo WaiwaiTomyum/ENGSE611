@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Loop</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 13px 11px;
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            max-width: 500px;
+            padding: 24px;
+            background: white;
+        }
+
+        button {
+            padding: 8px 14px;
+            color: white;
+            background-color: #08aeeb;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0098d1;
+        }
+
+        #output {
+            min-height: 200px;
+            margin-top: 8px;
+            padding: 12px;
+            color: white;
+            background: #111;
+            border-radius: 7px;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <button onclick="runLoop()">Run Code</button>
+        <div id="output">กดปุ่ม Run Code เพื่อดูผลลัพธ์</div>
+    </main>
+
+    <script>
+        function runLoop() {
+            const maxNumber = 15;
+            const output = [];
+
+            for (let i = 0; i <= maxNumber; i++) {
+                if (i % 2 === 0) {
+                    output.push(`${i} (คู่)`);
+                } else {
+                    output.push(`${i} (คี่)`);
+                }
+            }
+
+            for (let i = 0; i <= maxNumber; i += 2) {
+                output.push(`นับทีละ 2: ${i}`);
+            }
+
+            for (let i = 10; i >= 0; i--) {
+                output.push(`ถอยหลัง: ${i}`);
+            }
+
+            const message = output.join("\n");
+            document.getElementById("output").textContent = message;
+            console.log(message);
+        }
+    </script>
+</body>
+</html>

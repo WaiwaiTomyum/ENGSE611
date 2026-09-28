@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตรวจสอบเกรด</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 13px 11px;
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            max-width: 500px;
+            padding: 24px;
+            background: white;
+        }
+
+        button {
+            padding: 8px 14px;
+            color: white;
+            background-color: #08aeeb;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0098d1;
+        }
+
+        #output {
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 100px;
+            margin-top: 7px;
+            padding: 9px 12px;
+            color: white;
+            background-color: #111;
+            border-radius: 8px;
+            font-family: Consolas, monospace;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <h1>ตรวจสอบเกรด</h1>
+        <button onclick="checkGrade()">Run Code</button>
+        <pre id="output">กดปุ่มเพื่อสุ่มคะแนน</pre>
+    </main>
+
+    <script>
+        function checkGrade() {
+            const score = Math.floor(Math.random() * 101);
+            let grade;
+            let result;
+            let text;
+
+            if (score >= 80) {
+                grade = "A";
+            } else if (score >= 70) {
+                grade = "B";
+            } else if (score >= 60) {
+                grade = "C";
+            } else if (score >= 50) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            if (score >= 50) {
+                result = "ผ่าน";
+            } else {
+                result = "ไม่ผ่าน";
+            }
+
+            switch (grade) {
+                case "A":
+                    text = "ยอดเยี่ยมมาก";
+                    break;
+                case "B":
+                    text = "ดีมาก รักษามาตรฐานไว้";
+                    break;
+                case "C":
+                    text = "ผ่านเกณฑ์ระดับดี";
+                    break;
+                case "D":
+                    text = "พอใช้ แต่ควรพัฒนาเพิ่ม";
+                    break;
+                case "F":
+                    text = "ต้องลงทะเบียนเรียนใหม่";
+                    break;
+            }
+
+            const message = `คะแนนที่สุ่มได้: ${score}\nเกรด: ${grade}\nผลสอบ: ${result}\nคำอธิบาย: ${text}`;
+            document.getElementById("output").textContent = message;
+            console.log(message);
+        }
+    </script>
+</body>
+</html>
