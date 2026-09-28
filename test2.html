@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculate Grade</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #000000;
+    }
+
+    .grade-box {
+      max-width: 500px;
+    }
+
+    h1 {
+      margin: 0 0 34px;
+      font-size: 34px;
+      line-height: 1.6;
+    }
+
+    p {
+      margin: 0 0 32px;
+      font-size: 18px;
+    }
+
+    input,
+    button {
+      height: 46px;
+      border-radius: 8px;
+      font-size: 18px;
+    }
+
+    input {
+      width: 160px;
+      margin-right: 4px;
+      padding: 10px 12px;
+      border: 1px solid #d3d3d3;
+      background: #ffffff;
+    }
+
+    button {
+      padding: 0 20px;
+      border: 0;
+      color: #ffffff;
+      background: #12bdf1;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00a9dc;
+    }
+
+    #outputBox {
+      min-height: 80px;
+      margin-top: 26px;
+      padding: 18px 16px;
+      border-left: 6px solid #00c878;
+      border-radius: 12px;
+      background: #111111;
+      color: #ffffff;
+      font: 17px/1.35 monospace;
+      white-space: pre-line;
+    }
+
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      input {
+        width: 100%;
+        margin: 0 0 8px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="grade-box">
+    <h1>ฟังก์ชันคำนวณเกรด<br>(Calculate Grade)</h1>
+
+    <p><b>กรอกคะแนน:</b></p>
+    <input type="number" id="scoreInput" placeholder="0 - 100">
+    <button onclick="runGrade()">คำนวณเกรด</button>
+    <div id="outputBox">ผลลัพธ์จะแสดงที่นี่...</div>
+  </main>
+
+  <script>
+    function calculateGrade(score) {
+      if (score >= 80) {
+        return "A";
+      } else if (score >= 70) {
+        return "B";
+      } else if (score >= 60) {
+        return "C";
+      } else if (score >= 50) {
+        return "D";
+      } else {
+        return "F";
+      }
+    }
+
+    function runGrade() {
+      const output = [];
+      let score = Number(document.getElementById("scoreInput").value);
+
+      // ตรวจค่าว่างหรือผิด
+      if (isNaN(score) || score < 0 || score > 100) {
+        output.push("⚠ กรุณากรอกคะแนน 0-100");
+        document.getElementById("outputBox").textContent = output.join("\n");
+        return;
+      }
+
+      let grade = calculateGrade(score);
+
+      output.push("คะแนน: " + score);
+      output.push("เกรดที่ได้: " + grade);
+
+      console.log("คะแนน:", score);
+      console.log("เกรด:", grade);
+
+      document.getElementById("outputBox").textContent = output.join("\n");
+    }
+  </script>
+</body>
+</html>

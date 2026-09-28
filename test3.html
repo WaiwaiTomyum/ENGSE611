@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ตัวอย่าง DOM JavaScript</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 20px 28px;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #111;
+    }
+
+    h1 {
+      margin: 0 0 28px;
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    ul {
+      margin: 18px 0 26px;
+    }
+
+    li {
+      margin: 12px 0;
+      padding: 8px;
+      font-size: 18px;
+    }
+
+    .highlight {
+      background: #ffff00;
+      font-weight: bold;
+    }
+
+    .actions {
+      margin: 20px 0 26px;
+    }
+
+    button {
+      margin: 4px 6px 4px 0;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 6px;
+      color: #fff;
+      background: #12bdf1;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00a9dc;
+    }
+
+    #logBox {
+      min-height: 100px;
+      padding: 14px;
+      border-left: 5px solid #00c878;
+      border-radius: 10px;
+      background: #fff;
+      font: 16px/1.4 monospace;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 id="header">หัวข้อเดิมบนหน้าเว็บ</h1>
+    <p>รายการตัวอย่าง (class = "item"):</p>
+    <ul>
+      <li class="item">รายการที่ 1</li>
+      <li class="item">รายการที่ 2</li>
+      <li class="item">รายการที่ 3</li>
+    </ul>
+
+    <div class="actions">
+      <button onclick="changeTitle()">เปลี่ยนข้อความ + สีของหัวข้อ</button>
+      <button onclick="highlightItems()">ไฮไลต์ .item ทั้งหมด</button>
+      <button onclick="addParagraph()">สร้าง &amp; เพิ่มข้อความใหม่</button>
+    </div>
+
+    <div id="logBox">Log: รอกดปุ่มเพื่อดูการเปลี่ยนแปลง...</div>
+  </main>
+
+  <script>
+    // เลือก Element ตั้งแต่ต้น
+    const title = document.getElementById("header");
+    const items = document.querySelectorAll(".item");
+    const logBox = document.getElementById("logBox");
+
+    function log(message) {
+      console.log(message);
+      logBox.textContent += "\n" + message;
+    }
+
+    // เปลี่ยนข้อความ + สีของหัวข้อ
+    function changeTitle() {
+      title.textContent = "หัวข้อถูกเปลี่ยนโดย JavaScript";
+      title.style.color = "red";
+      title.style.fontWeight = "bold";
+      log("เปลี่ยนข้อความและสีของ #header แล้ว");
+    }
+
+    // ไฮไลต์ element ที่มี class = "item"
+    function highlightItems() {
+      items.forEach((item, index) => {
+        item.classList.add("highlight");
+        item.textContent = "รายการที่ " + (index + 1) + " (ถูกไฮไลต์)";
+      });
+      log("เพิ่มคลาส .highlight ให้ .item ทั้งหมด");
+    }
+
+    // สร้าง <p> ใหม่แล้วแปะท้าย body
+    function addParagraph() {
+      let p = document.createElement("p");
+      p.textContent = "ข้อความใหม่ที่เพิ่มจาก JavaScript เวลา: " + new Date().toLocaleTimeString();
+      document.body.appendChild(p);
+      log("สร้าง <p> ใหม่และ appendChild ลงท้าย <body>");
+    }
+  </script>
+</body>
+</html>
